@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+!.env.example
+wp-config.php
+wp-content/uploads/
+*.sql
+*.sql.gz
+*.log
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+work/
+private/

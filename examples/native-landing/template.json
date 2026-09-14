@@ -1,0 +1,53 @@
+{
+  "title": "Native editing workshop",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": [],
+  "content": [
+    {
+      "id": "ce10001",
+      "elType": "container",
+      "isInner": false,
+      "settings": [],
+      "elements": [
+        {
+          "id": "ce10002",
+          "elType": "widget",
+          "widgetType": "heading",
+          "isInner": false,
+          "settings": {
+            "title": "Build pages your team can edit",
+            "header_size": "h1"
+          },
+          "elements": []
+        },
+        {
+          "id": "ce10003",
+          "elType": "widget",
+          "widgetType": "text-editor",
+          "isInner": false,
+          "settings": {
+            "editor": "<p>A small workshop for learning native Elementor editing.</p>",
+            "_element_id": "workshop-details"
+          },
+          "elements": []
+        },
+        {
+          "id": "ce10004",
+          "elType": "widget",
+          "widgetType": "button",
+          "isInner": false,
+          "settings": {
+            "text": "Read the workshop details",
+            "link": {
+              "url": "#workshop-details",
+              "is_external": "",
+              "nofollow": ""
+            }
+          },
+          "elements": []
+        }
+      ]
+    }
+  ]
+}
