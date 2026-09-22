@@ -14,8 +14,14 @@
 - Exported, inspected, and reimported the edited fixture on the same installation;
   documented that Canvas layout required manual reselection after import.
 - Recorded limited CTA keyboard checks and rendered contrast results; full
-  accessibility and compatibility with other environments remain unverified.
+  accessibility and a cross-version compatibility matrix remain unverified.
 - Included both bundled fixtures in the strict example check.
+- Clarified the Saved Template import exercise versus the separate draft Page exercise,
+  and added explicit export, downloaded-file inspection, and fresh-reimport steps.
+- Expanded compatibility reports to identify the fixture, database type, measured
+  viewport widths, and each import/edit/export outcome.
+- Added a separate WordPress Playground record with actual PHP.wasm/SQLite versions,
+  native editing evidence, and explicit limits on hosting and accessibility claims.
 
 ## 0.1.0 — 2026-09-15
 
