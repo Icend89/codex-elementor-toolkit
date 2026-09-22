@@ -13,6 +13,7 @@ The bundled template is authored from scratch using the documented format. At v0
 | Native Elementor V4 composition/render | September 15 frontend rendered; editor reopening remained incomplete during that run. Normal editor loading succeeded on September 22 without an identified fix |
 | Bundled fixture import/edit/save/reopen | Completed on one isolated installation on September 22; exact environment and limitations below |
 | Export/inspect/reimport | Completed for the fictional edited fixture on the same installation; Canvas layout required manual reselection |
+| Separate Playground installation | A PHP 8.3 / SQLite browser test is recorded below; it is not conventional hosting or a second Elementor version |
 | Responsive, contrast, and keyboard behavior | Recorded client-width overflow checks, four color pairs, and limited CTA focus/activation checks; no full accessibility pass |
 | Pro, Theme Builder, Loop Grid | Not implemented or tested in the sample |
 | External user adoption | No verified records collected |
@@ -24,14 +25,16 @@ A workflow file being present is not evidence that CI has passed. Check the actu
 Copy this section into a report after running it. Replace every pending value; do not pre-check outcomes.
 
 - Date / tester / repository commit: pending
+- Fixture path / imported Saved Template or manually built Page: pending
 - WordPress / PHP / theme + version: pending
 - Elementor / Pro if applicable / editor feature settings: pending
-- Installation type (disposable local or staging): pending
+- Installation type (disposable local, staging, or Playground) / database type: pending
 - Import result and exact steps: pending
-- Edit each widget, save, reopen: pending
-- Frontend at 360 / 768 / 1440 CSS pixels: pending
+- Edited heading / body / button values, then save/reopen result: pending
+- Frontend requested widths / measured inner, client, and scroll widths: pending
 - Keyboard and heading review: pending
-- Export + inspector output: pending
+- Exported filename (no private path) / inspector command, exit code, and findings: pending
+- Fresh reimport result / text, colors, anchor, and page layout comparison: pending
 - Redacted screenshots or reproducible defect: pending
 - Limitations / retest required: pending
 
@@ -167,3 +170,53 @@ This follow-up establishes one small export/inspect/reimport cycle on one instal
 It does not establish a cross-version compatibility matrix, full keyboard navigation,
 WCAG conformance, production use, or external adoption. Recheck page layout and actual
 rendered styles after importing into another site.
+
+## Recorded separate Playground test: September 22
+
+Created a fresh installation through the official
+[WordPress Playground Query API](https://developer.wordpress.org/playground/developers/apis/query-api/)
+using `php=8.3`, `wp=latest`, `plugin=elementor`, `theme=hello-elementor`, and
+`networking=yes`. These launch parameters select the available release; they do not pin
+future launches to the versions observed below. The installation contains only the
+WordPress starter content and this project's fictional exercise.
+
+- Fixture: `examples/native-landing/template-high-contrast.json` at `6f440d2`.
+- Observed versions: WordPress 7.1.1, Elementor 4.2.4 free, Hello Elementor 3.5.1;
+  Elementor Pro was not installed.
+- Runtime: PHP 8.3.33, PHP.wasm, Emscripten 4.0.19 wasm32; reported PHP memory limit 256M.
+- Database: Site Health reported `WP_MySQL_On_SQLite` and
+  `8.0.38-mysql-on-sqlite-3.0.2`. This is a SQLite-backed compatibility layer,
+  not an independent MySQL server.
+- Import: selected the public fixture through Elementor's **Import Templates**,
+  continued past the trusted-file notice, and chose **Import Without Enabling**.
+  A separate Saved Template was created successfully.
+- Native editing: selected **Elementor Canvas** after observing the theme's extra H1.
+  Changed the Heading to "Build native pages in a fresh test site", the Text Editor
+  body to "A fictional workshop tested in a separate WordPress Playground installation.",
+  and the Button label to "View this workshop" using native controls.
+- Save/reopen: saved, navigated back to the same template's normal editor URL, and
+  confirmed all three text changes persisted. Its frontend displayed one H1, the
+  edited paragraph and CTA, and the intended dark text/blue button treatment.
+- Visual responsive check: requested outer browser widths were 1440 / 768 / 360 CSS
+  pixels; measured outer `innerWidth` values were 1441 / 768 / 361. Text remained
+  readable and the CTA was visible in all three screenshots, with the heading and
+  body wrapping at the narrow size. The nested WordPress frame's client/scroll widths
+  were not measured, so this is not a quantified overflow check. Computed contrast,
+  keyboard navigation, and focus-state measurements were not repeated in this run.
+- Export inspection: collected `elementor-6-2026-09-22.json` using **Export Page**.
+  `node tools/inspect-template.mjs "<downloaded file>" --json --strict` exited 0:
+  4 elements, 0 errors, 0 warnings. Manual file review confirmed the three edited
+  text values, all explicit color settings, the white background, and local anchor.
+  As in the staging export, Canvas layout was absent from `page_settings`.
+- Fresh reimport: imported that downloaded JSON as another Saved Template, again
+  choosing **Import Without Enabling**. The edited heading, body, CTA label, and
+  local link were present. Default layout again included the theme's extra H1.
+  Manually selected **Elementor Canvas**, saved, and reopened the new template's
+  normal editor. The changes persisted; its frontend displayed one H1 with the
+  edited paragraph and CTA. Canvas still requires this explicit layout step.
+
+This test uses the same WordPress, Elementor, and theme versions as the staging run;
+the PHP runtime, database, and fresh installation differ. Playground's browser/SQLite
+environment is not a substitute for testing conventional hosting with the database
+listed in [Elementor's system requirements](https://elementor.com/help/requirements/).
+This is maintainer testing, not an independent user's adoption or compatibility report.
