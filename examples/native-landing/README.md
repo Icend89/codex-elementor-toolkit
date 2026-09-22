@@ -13,8 +13,11 @@ On a disposable site, open **Templates > Saved Templates > Import Templates** an
 one of the JSON files above. Review any trust notice for the file you selected. In the original-fixture test,
 **Import Without Enabling** completed the import without enabling unfiltered uploads.
 
-Open the imported template in Elementor and edit the heading, Text Editor content, and
-button label using their native controls. Save and check the frontend. If the theme adds
+The import creates a **Saved Template**. Open that entry in Elementor and edit the
+heading, Text Editor content, and button label using their native controls. Save and open
+its frontend preview. Return to **Templates > Saved Templates** and reopen the same entry
+to check that your edits persisted. This exercise does not require a separate WordPress Page.
+If the theme adds
 its own page-title H1 above the fixture's H1, choose **Elementor Canvas** in Page Settings
 for this standalone exercise, then save and check again. Record your actual results;
 one successful test does not guarantee the same behavior in every installation.
@@ -23,7 +26,36 @@ one successful test does not guarantee the same behavior in every installation.
 manually when needed for this standalone exercise. The white background in the second
 fixture is a page color setting, not a page-layout setting.
 
-## Build it in the editor
+## Export, inspect, and reimport the edited template
+
+1. Save the edited Saved Template. Note its heading, body copy, button label, and any
+   [native color settings](#set-deliberate-colors-with-native-controls) you changed.
+2. Return to **Templates > Saved Templates**, locate that template, and use its native
+   **Export Page** action. Keep the downloaded JSON locally.
+3. From the toolkit repository directory, inspect the actual downloaded file. Replace
+   the example path below with its local path; retain quotes if the path contains spaces:
+
+   ```sh
+   node tools/inspect-template.mjs "/path/to/downloaded-template.json" --json --strict
+   ```
+
+4. Use **Import Templates** to import that downloaded file as a separate Saved Template.
+   Keep the first template for comparison and identify the new entry before editing it.
+   Review any trust notice for your original fictional export; use **Import Without
+   Enabling** when that option is offered.
+5. Open the new template and compare all three text values, the rendered text/background
+   colors, the button's `#workshop-details` link, and its matching target. Check the layout
+   before changing it. If the theme adds an extra H1, manually select **Elementor Canvas**
+   in Page Settings and record that additional step; neither bundled fixture includes it.
+6. Save and reopen the new template, then check its frontend preview again. Record the
+   inspector output, what persisted, any differences, and unperformed checks in
+   [your validation report](../../docs/validation.md). Passing inspection alone does not
+   prove that rendering, layout, or accessibility was preserved.
+
+## Build a separate draft Page in the editor
+
+This is an alternative manual construction exercise. Its WordPress Page is separate
+from the Saved Templates used in the import/export exercise above.
 
 1. On a disposable WordPress/Elementor site, create a draft page.
 2. Add one Container.
