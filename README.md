@@ -49,7 +49,7 @@ On Windows, quote paths containing spaces. Input files stay local. The command o
 
 This is a developer toolkit, not an installable WordPress plugin. It does not automatically convert HTML, operate the Elementor editor, deploy pages, validate every widget control, or sanitize exports. Warnings are review cues, not vulnerability findings.
 
-The JSON fixture follows the documented Elementor structure but **has not yet been imported and visually tested in a live WordPress/Elementor installation**. Passing checks does not prove render compatibility, accessibility, security, or editability. See [validation status](docs/validation.md). Elementor Pro is optional for the workflow and is not bundled.
+The authored JSON fixture has a recorded import and native-editing check on one isolated WordPress/Elementor installation. This does not establish compatibility with other versions. Passing structural checks alone does not prove render compatibility, accessibility, security, or editability. See the exact environment, outcomes, and remaining limitations in [validation status](docs/validation.md). Elementor Pro is optional for the workflow and is not bundled.
 
 ## Contribute and maintain
 
