@@ -1,0 +1,62 @@
+{
+  "content": [
+    {
+      "id": "28549d4b",
+      "settings": [],
+      "elements": [
+        {
+          "id": "38c0d372",
+          "settings": {
+            "title": "Build native pages your team can edit",
+            "header_size": "h1",
+            "title_color": "#172B4D"
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "heading",
+          "elType": "widget"
+        },
+        {
+          "id": "35a43639",
+          "settings": {
+            "editor": "<p>A fictional workshop for practicing native Elementor editing and saving.</p>",
+            "_element_id": "workshop-details",
+            "text_color": "#334155"
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "text-editor",
+          "elType": "widget"
+        },
+        {
+          "id": "eca0a3a",
+          "settings": {
+            "text": "Explore the workshop details",
+            "link": {
+              "url": "#workshop-details",
+              "is_external": "",
+              "nofollow": ""
+            },
+            "button_text_color": "#FFFFFF",
+            "background_color": "#1D4ED8",
+            "hover_color": "#FFFFFF",
+            "button_background_hover_color": "#1E40AF"
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "button",
+          "elType": "widget"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ],
+  "page_settings": {
+    "background_background": "classic",
+    "background_color": "#FFFFFF"
+  },
+  "version": "0.4",
+  "title": "Native editing workshop",
+  "type": "page"
+}
