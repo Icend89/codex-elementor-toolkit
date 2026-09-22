@@ -9,10 +9,11 @@ The bundled template is authored from scratch using the documented format. At v0
 | Area | Evidence |
 | --- | --- |
 | Inspector correctness | Run node --test; GitHub Actions repeats tests on Node 22 and 24 on Linux and Windows |
-| Original sample structure | Run npm run check:example |
+| Bundled fixture structure | Run npm run check:example for both fixtures |
 | Native Elementor V4 composition/render | September 15 frontend rendered; editor reopening remained incomplete during that run. Normal editor loading succeeded on September 22 without an identified fix |
 | Bundled fixture import/edit/save/reopen | Completed on one isolated installation on September 22; exact environment and limitations below |
-| Responsive and keyboard behavior | Recorded client-width overflow checks and one CTA keyboard-activation check; no full accessibility pass |
+| Export/inspect/reimport | Completed for the fictional edited fixture on the same installation; Canvas layout required manual reselection |
+| Responsive, contrast, and keyboard behavior | Recorded client-width overflow checks, four color pairs, and limited CTA focus/activation checks; no full accessibility pass |
 | Pro, Theme Builder, Loop Grid | Not implemented or tested in the sample |
 | External user adoption | No verified records collected |
 
@@ -69,7 +70,7 @@ This record is evidence of one real staging run, not a general compatibility cla
 Save/reopen remained incomplete at the end of this run. The later successful retest below
 does not establish the cause of the earlier loading failure.
 
-## Recorded bundled-fixture test: September 22
+## Recorded bundled-fixture test: September 22, first pass
 
 2026-09-22: retested the same isolated staging installation using only the original
 fictional fixture and fictional text edits. No client material was used or recorded.
@@ -114,4 +115,55 @@ fictional fixture and fictional text edits. No client material was used or recor
 
 This is a recorded result for one installation and one small fixture. It does not establish
 support for other versions, production use, Pro widgets, full accessibility, or an
-export/reimport workflow. Recheck imported content against your own site settings.
+export/reimport workflow at this stage. Recheck imported content against your own site settings.
+
+## Recorded contrast and export/reimport test: September 22, follow-up
+
+Continued on the same isolated installation and versions listed above. All content was
+fictional. The original `template.json` remains unchanged so its structural baseline and
+inherited-style limitations remain reproducible.
+
+- Native color edits: set the Heading to `#172B4D`, Text Editor to `#334155`, and page
+  background to `#FFFFFF`. Set the Button's normal state to white on `#1D4ED8` and hover
+  state to white on `#1E40AF`. Used native Style and Page Settings controls, then saved.
+- Rendered contrast: computed frontend colors matched those settings. The heading,
+  body, normal button, and hovered button pairs measured 14.10:1, 10.35:1, 6.70:1, and
+  8.72:1 respectively using the sRGB contrast formula. These are color-pair results,
+  not a full accessibility assessment.
+- Export: collected the edited template using **Export Page** in Saved Templates.
+  The earlier browser download-collection failure was overcome in this follow-up;
+  no Elementor or server fix was applied or established.
+- Export inspection: the downloaded JSON passed the existing inspector with `--json
+  --strict`: 4 elements, 0 errors, 0 warnings. Separately reviewed its full contents:
+  only fictional text, native settings, generated element IDs, and the local
+  `#workshop-details` link were present. No media, external URLs, or client material
+  were included. The inspector itself does not establish privacy or security.
+- Published fixture: `examples/native-landing/template-high-contrast.json` is a
+  pretty-printed copy of that export. Its parsed JSON was checked for equality with
+  the downloaded file.
+- Reimport: imported that downloaded JSON as a separate Saved Template through the
+  same import route, choosing **Import Without Enabling** again. The heading, copy,
+  CTA label, colors, white background, and local anchor were preserved.
+- Layout limitation: the export did not include Canvas layout in `page_settings`.
+  The new import therefore used Default layout and displayed the theme's extra H1.
+  Manually selected **Elementor Canvas**, saved, and reopened the editor. The frontend
+  then had exactly one H1 and one `workshop-details` target. Canvas persisted after
+  this manual save. Do not assume template export carries every page setting.
+- Reimported frontend: normal editor loading and native widget structure were
+  available after reopening. Requested viewport widths 1440 / 768 / 360 produced
+  equal `innerWidth`, client width, and scroll width at 1441 / 768 / 361 CSS pixels.
+  Content was readable with no horizontal overflow at those measured widths;
+  exact 1440px and 360px checks remain unverified.
+- Reimported CTA interactions: hovering used white on `#1E40AF`. Keyboard focus showed
+  the same color pair and a visible black outline; `:focus-visible` matched. Pressing
+  Enter changed the URL fragment to `#workshop-details`, whose target occurred once.
+  This was a focused CTA check on the logged-in frontend, not a complete tab-order audit.
+- Offline checks for this follow-up: Windows, Node.js 24.19.0; all 15 existing tests
+  passed. Both fixtures passed strict inspection with 4 elements, 0 errors, and 0
+  warnings each. npm was unavailable locally, so the exact `check:example` script was
+  executed directly; GitHub Actions runs it through npm on its Node 22/24 matrix.
+
+This follow-up establishes one small export/inspect/reimport cycle on one installation.
+It does not establish a cross-version compatibility matrix, full keyboard navigation,
+WCAG conformance, production use, or external adoption. Recheck page layout and actual
+rendered styles after importing into another site.
