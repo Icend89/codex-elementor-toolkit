@@ -41,7 +41,7 @@ On Windows, quote paths containing spaces. Input files stay local. The command o
 | --- | --- |
 | [docs](docs/getting-started.md) | Setup, native editing, conversion, validation, and maintenance |
 | [prompts](prompts/README.md) | Concrete tasks with inputs, deliverables, and acceptance checks |
-| [examples](examples/native-landing/README.md) | Original three-widget landing-page fixture and build recipe |
+| [examples](examples/native-landing/README.md) | Original three-widget fixture, a high-contrast exported variant, and native build recipes |
 | [tools](tools/README.md) | Read-only JSON structure inspector |
 | [tests](tests/inspect-template.test.mjs) | Structural and CLI regression tests |
 
@@ -49,7 +49,7 @@ On Windows, quote paths containing spaces. Input files stay local. The command o
 
 This is a developer toolkit, not an installable WordPress plugin. It does not automatically convert HTML, operate the Elementor editor, deploy pages, validate every widget control, or sanitize exports. Warnings are review cues, not vulnerability findings.
 
-The authored JSON fixture has a recorded import and native-editing check on one isolated WordPress/Elementor installation. This does not establish compatibility with other versions. Passing structural checks alone does not prove render compatibility, accessibility, security, or editability. See the exact environment, outcomes, and remaining limitations in [validation status](docs/validation.md). Elementor Pro is optional for the workflow and is not bundled.
+The original fixture has a recorded import and native-editing check on one isolated WordPress/Elementor installation. A high-contrast variant was exported, inspected, and reimported on that same installation; Canvas layout had to be selected again manually. This does not establish compatibility with other versions. Passing structural checks alone does not prove render compatibility, accessibility, security, or editability. See the exact environment, outcomes, and remaining limitations in [validation status](docs/validation.md). Elementor Pro is optional for the workflow and is not bundled.
 
 ## Contribute and maintain
 

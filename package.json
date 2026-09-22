@@ -10,6 +10,6 @@
   },
   "scripts": {
     "test": "node --test",
-    "check:example": "node tools/inspect-template.mjs examples/native-landing/template.json --strict"
+    "check:example": "node tools/inspect-template.mjs examples/native-landing/template.json --strict && node tools/inspect-template.mjs examples/native-landing/template-high-contrast.json --strict"
   }
 }

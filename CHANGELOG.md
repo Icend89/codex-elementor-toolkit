@@ -9,8 +9,13 @@
 - Recorded the earlier editor reload failure and a later successful retest without
   attributing an unverified cause or fix.
 - Documented the import route and Canvas layout choice when a theme adds a duplicate H1.
-- Recorded a limited CTA keyboard check and inherited-style contrast issues; full
-  accessibility and export/reimport compatibility remain unverified.
+- Preserved the original fixture and added a fictional high-contrast variant using
+  native color controls, with reproducible color pairs and import instructions.
+- Exported, inspected, and reimported the edited fixture on the same installation;
+  documented that Canvas layout required manual reselection after import.
+- Recorded limited CTA keyboard checks and rendered contrast results; full
+  accessibility and compatibility with other environments remain unverified.
+- Included both bundled fixtures in the strict example check.
 
 ## 0.1.0 — 2026-09-15
 
