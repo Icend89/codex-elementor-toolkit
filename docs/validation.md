@@ -4,13 +4,15 @@
 
 Automated checks exercise the standalone inspector against original fixtures. They do not launch WordPress, Elementor, PHP, a browser, or an OpenAI model.
 
-The bundled template is authored from scratch using the documented format. No live Elementor import, save/reopen, frontend, or responsive test has been recorded yet. There is no verified WordPress/Elementor compatibility matrix in this release.
+The bundled template is authored from scratch using the documented format. At v0.1.0 publication, no live Elementor import, save/reopen, frontend, or responsive test had been recorded. There is no verified WordPress/Elementor compatibility matrix in this release.
 
 | Area | Evidence |
 | --- | --- |
 | Inspector correctness | Run node --test; GitHub Actions repeats tests on Node 22 and 24 on Linux and Windows |
 | Original sample structure | Run npm run check:example |
-| Native Elementor import/edit/render | Pending real installation test |
+| Native Elementor V4 composition/render | September 15 frontend rendered; editor reopening remained incomplete during that run. Normal editor loading succeeded on September 22 without an identified fix |
+| Bundled fixture import/edit/save/reopen | Completed on one isolated installation on September 22; exact environment and limitations below |
+| Responsive and keyboard behavior | Recorded client-width overflow checks and one CTA keyboard-activation check; no full accessibility pass |
 | Pro, Theme Builder, Loop Grid | Not implemented or tested in the sample |
 | External user adoption | No verified records collected |
 
@@ -37,3 +39,79 @@ Copy this section into a report after running it. Replace every pending value; d
 2026-09-15: Windows, Node.js v24.19.0. All 15 automated tests passed (0 failures).
 The original sample passed strict inspection: 4 elements, 0 errors, 0 warnings.
 All repository-relative Markdown links resolved. This is offline evidence only.
+
+## Recorded isolated WordPress/Elementor run: September 15
+
+2026-09-15: an isolated staging site was created specifically for this test. It contains
+fictional copy only; no client code, assets, credentials, domains, or implementation details
+are recorded here.
+
+- Repository commit: `a4b5cec` (`v0.1.0`)
+- WordPress: 7.1; PHP version: not recorded
+- Elementor: 4.2.4 (free); Elementor Pro: not installed
+- Active theme: Hello Elementor 3.5.1
+- Editor feature path: Elementor V4 Atomic Elements / native editor composition
+- Test content: one semantic section with a heading, paragraph, and button, all created in
+  the native editor with fictional text
+- Frontend result: published page rendered the heading, paragraph, and button successfully
+- Responsive result: requested widths were 1440 / 768 / 360 CSS pixels; measured client
+  widths were 1441 / 768 / 346 CSS pixels. No horizontal overflow was observed at those
+  measured widths. Exact 1440px and 360px checks remain unverified.
+- Save/reopen result: the published page remained available on the frontend. Reloading the
+  Elementor editor showed the saved `demo-hero` structure, but the canvas remained on its
+  loading screen. The editor offered Safe Mode, but successful activation was not
+  confirmed. No Safe Mode troubleshooting result is established.
+- Scope limitation: this is a V4 native-composition check. The repository's bundled JSON
+  fixture was not imported through Elementor's template importer, so import/export
+  compatibility remains unverified.
+
+This record is evidence of one real staging run, not a general compatibility claim.
+Save/reopen remained incomplete at the end of this run. The later successful retest below
+does not establish the cause of the earlier loading failure.
+
+## Recorded bundled-fixture test: September 22
+
+2026-09-22: retested the same isolated staging installation using only the original
+fictional fixture and fictional text edits. No client material was used or recorded.
+
+- Repository fixture: `examples/native-landing/template.json` at `a4b5cec` (`v0.1.0`)
+- WordPress: 7.1.1; PHP: 7.4.33
+- Elementor: 4.2.4 (free); Elementor Pro: not installed
+- Active theme: Hello Elementor 3.5.1
+- Other observed active plugin: ImunifySecurity 4.1.0. Must-use plugins: Elementor Safe
+  Mode 1.0.0 and Imunify Security Bot Protection 1.0.0. One drop-in was listed; its identity
+  was not recorded.
+- Earlier editor-loading issue: the original native-composition page loaded in both the
+  safe-mode URL and the normal editor URL. No corrective change was applied, so the
+  earlier failure's cause and the reason it stopped occurring remain unknown.
+- Import: used **Templates > Saved Templates > Import Templates**, selected the original
+  JSON fixture, continued past its trust notice, and chose **Import Without Enabling**.
+  Import succeeded without enabling unfiltered uploads.
+- Native editing: changed the heading, Text Editor content, and button label through
+  their own editor controls. Saved changes were visible on the frontend.
+- Page layout: the theme's default layout added a second H1 above the fixture's heading.
+  Selected **Elementor Canvas** in native Page Settings and saved. The frontend then
+  contained exactly one H1; the `workshop-details` target occurred once and the CTA's
+  `#workshop-details` link was preserved.
+- Save/reopen: reopened the imported template using the normal editor URL. All three
+  text edits and the Canvas layout persisted, and the editor loaded successfully.
+- Responsive check: requested widths were 1440 / 768 / 360 CSS pixels. Measured
+  `innerWidth`, client width, and scroll width were equal at each check: 1441 / 768 / 361
+  CSS pixels respectively. Content remained readable with no horizontal overflow at
+  those measured widths. Exact 1440px and 360px checks remain unverified.
+- Keyboard check: pressing Enter on the focused CTA changed the URL fragment to
+  `#workshop-details`, and that target existed. This was a single activation check,
+  not a complete keyboard-navigation or tab-order audit.
+- Contrast observations: inherited default colors produced ratios of 2.02:1 for the
+  heading (`rgb(110, 193, 228)` on white, 40px / weight 600), 4.29:1 for body copy
+  (`rgb(122, 122, 122)` on white, 16px), and 1.99:1 for the button label (white on
+  `rgb(97, 206, 112)`, 15px). These styles need contrast remediation and retesting;
+  this run is not an accessibility pass. The fixture inherits installation styling.
+- Export, exported-file inspection, and reimport: not verified in this run. An **Export
+  Page** attempt did not yield a collected artifact because browser download collection
+  reported a paused-response error and a navigation timeout. This does not establish an
+  Elementor or server defect.
+
+This is a recorded result for one installation and one small fixture. It does not establish
+support for other versions, production use, Pro widgets, full accessibility, or an
+export/reimport workflow. Recheck imported content against your own site settings.
