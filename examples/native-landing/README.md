@@ -1,6 +1,18 @@
 # Native landing-page exercise
 
-This fictional example is original and contains no customer content, media, external URLs, or premium widgets. The JSON is an authored structural fixture; live import is still unverified.
+This fictional example is original and contains no customer content, media, external URLs, or premium widgets. The JSON is an authored structural fixture with one isolated live import and native-editing check recorded in [validation status](../../docs/validation.md).
+
+## Import the original fixture
+
+On a disposable site, open **Templates > Saved Templates > Import Templates** and select
+`template.json`. Review any trust notice for the file you selected. In the recorded test,
+**Import Without Enabling** completed the import without enabling unfiltered uploads.
+
+Open the imported template in Elementor and edit the heading, Text Editor content, and
+button label using their native controls. Save and check the frontend. If the theme adds
+its own page-title H1 above the fixture's H1, choose **Elementor Canvas** in Page Settings
+for this standalone exercise, then save and check again. Record your actual results;
+one successful test does not guarantee the same behavior in every installation.
 
 ## Build it in the editor
 
